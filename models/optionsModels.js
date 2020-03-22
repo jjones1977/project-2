@@ -1,0 +1,78 @@
+const { Pool } = require("pg");
+
+const connectionString = process.env.DATABASE_URL || "postgres://xcoifhfdhovwqc:99e7c2254039c80310cedc3bcc8bd4b04b8f819671bcd0949cd357d26decdfcd@ec2-52-23-14-156.compute-1.amazonaws.com:5432/d5055h7ookutr3?ssl=true";
+
+const pool = new Pool({connectionString: connectionString});
+
+
+function getOptionFromDb(id, callback) {
+    console.log("Getting person from DB with id: " + id);
+
+    const sql = "SELECT id, option FROM options WHERE id = $1::int";
+
+    const params = [id];
+
+    pool.query(sql, params, function(err, result) {
+            if (err) {
+                console.log("Error in query: ")
+                    console.log(err);
+                callback(err, null);
+            }
+
+            console.log("Found result: " + JSON.stringify(result.rows));
+
+            callback(null, result.rows);
+
+        });
+
+}
+
+function getResultFromDb(id, callback) {
+    console.log("Getting person from DB with id: " + id);
+
+    const sql = "SELECT id, result FROM results WHERE id = $1::int";
+
+    const params = [id];
+
+    pool.query(sql, params, function(err, result) {
+            if (err) {
+                console.log("Error in query: ")
+                    console.log(err);
+                callback(err, null);
+            }
+
+            console.log("Found result: " + JSON.stringify(result.rows));
+
+            callback(null, result.rows);
+
+        });
+
+}
+
+function getIdForNextOptionFromDb(id, callback) {
+    console.log("Getting person from DB with id: " + id);
+
+    const sql = "SELECT id, result FROM results WHERE id = $1::int";
+
+    const params = [id];
+
+    pool.query(sql, params, function(err, result) {
+            if (err) {
+                console.log("Error in query: ")
+                    console.log(err);
+                callback(err, null);
+            }
+
+            console.log("Found result: " + JSON.stringify(result.rows));
+
+            callback(null, result.rows);
+
+        });
+
+}
+
+
+module.exports = {
+    getOptionFromDb: getOptionFromDb,
+    getResultFromDb: getResultFromDb
+}
