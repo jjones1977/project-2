@@ -21,8 +21,6 @@ app.listen(port, function() {
 	console.log('Node is running on port', app.get('port'));
 });
 
-app.get('/getOption1', optionsController.getOption1);
-app.get('/getOption2', optionsController.getOption2);
-app.get('/getOption3', optionsController.getOption3);
-
+app.get('/getOption', optionsController.getOption);
 app.get('/getResult', optionsController.getResult);
+app.get('/getNextOptions', optionsController.getNextOptions);

@@ -7,25 +7,9 @@ const pool = new Pool({connectionString: connectionString});
 const optionModels = require("../models/optionsModels.js");
 
 
-function getOption1(request, response) {
+function getOption(request, response) {
 
-    id = 1;
-
-    optionModels.getOptionFromDb(id, function(error, result) {
-
-            if (error || result == null || result.length != 1) {
-                response.status(500).json({success: false, data: error});
-            } else {
-                const option = result[0];
-                response.status(200).json(result);
-            }
-
-	});
-}
-
-function getOption2(request, response) {
-
-    id = 2;
+    var id = request.query.idValue;
 
     optionModels.getOptionFromDb(id, function(error, result) {
 
@@ -39,13 +23,13 @@ function getOption2(request, response) {
         });
 }
 
-function getOption3(request, response) {
+function getNextOptions(request, response) {
 
-    id = 3;
+    var id = request.query.idValue;
 
-    optionModels.getOptionFromDb(id, function(error, result) {
+    optionModels.getNextOptionsFromDb(id, function(error, result) {
 
-            if (error || result == null || result.length != 1) {
+            if (error || result == null || result.length != 3) {
                 response.status(500).json({success: false, data: error});
             } else {
                 const option = result[0];
@@ -57,14 +41,15 @@ function getOption3(request, response) {
 
 function getResult(request, response) {
 
-    id = request.query.resultValue;
+    var id = request.query.resultValue;
 
     optionModels.getResultFromDb(id, function(error, result) {
 
-            if (error || result == null || result.length != 1) {
+            if (error || result == null) {
                 response.status(500).json({success: false, data: error});
             } else {
-                const option = result[0];
+                const dbResult = result[0];
+                
                 response.status(200).json(result);
             }
 
@@ -72,8 +57,7 @@ function getResult(request, response) {
 }
 
 module.exports = {
-    getOption1: getOption1,
-    getOption2: getOption2,
-    getOption3: getOption3,
-    getResult: getResult,
+    getOption: getOption,
+    getNextOptions: getNextOptions,
+    getResult: getResult
 };

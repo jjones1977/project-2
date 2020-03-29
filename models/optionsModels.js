@@ -6,7 +6,6 @@ const pool = new Pool({connectionString: connectionString});
 
 
 function getOptionFromDb(id, callback) {
-    console.log("Getting person from DB with id: " + id);
 
     const sql = "SELECT id, option FROM options WHERE id = $1::int";
 
@@ -28,9 +27,9 @@ function getOptionFromDb(id, callback) {
 }
 
 function getResultFromDb(id, callback) {
-    console.log("Getting person from DB with id: " + id);
 
-    const sql = "SELECT id, result FROM results WHERE id = $1::int";
+   
+    const sql = "SELECT results.result AS result, results.id AS rID, results.resultfinal AS resultfinal FROM results INNER JOIN optionsresults on results.id = optionsresults.resultid WHERE optionsresults.optionid = $1::int";
 
     const params = [id];
 
@@ -49,10 +48,9 @@ function getResultFromDb(id, callback) {
 
 }
 
-function getIdForNextOptionFromDb(id, callback) {
-    console.log("Getting person from DB with id: " + id);
+function getNextOptionsFromDb(id, callback) {
 
-    const sql = "SELECT id, result FROM results WHERE id = $1::int";
+    const sql = "Select options.option, options.id as oid FROM options INNER JOIN resultsoptions on options.id = resultsoptions.optionid WHERE resultsoptions.resultid = $1::int";
 
     const params = [id];
 
@@ -74,5 +72,6 @@ function getIdForNextOptionFromDb(id, callback) {
 
 module.exports = {
     getOptionFromDb: getOptionFromDb,
-    getResultFromDb: getResultFromDb
+    getResultFromDb: getResultFromDb,
+    getNextOptionsFromDb: getNextOptionsFromDb
 }
