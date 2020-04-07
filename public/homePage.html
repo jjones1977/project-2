@@ -11,11 +11,13 @@
     h1 {
        font-family: Verdana, Geneva, sans-serif;
        font-size: 75px;
+       text-align: center;
     }
 
     h2 {
        font-family: Verdana, Geneva, sans-serif;
-       font-size: 20px;
+       font-size: 40px;
+       font-weight: bold;
     }
 
     .h2 {
@@ -36,6 +38,11 @@
 
     .div1 {
        text-align: center;
+       margin-top: 0px;
+    }
+
+    .div4 {
+       text-align: center;
        margin-top: 50px;
     }
 
@@ -46,6 +53,7 @@
 
     .div3 {
        margin-left: 100px;
+       margin-right: 100px;
        padding-bottom: 20pt;
     }
 
@@ -76,21 +84,15 @@
 
 <body onload="initialInvisible()">
 
+   <div class="div4"><img src="IMG_1697.jpg" alt="Oregon Trail" style="width:125px;height:75px;"></div>
    <div class="div1"><h1>Oregon Trail</h1></div>
 
-   <div class="div2"><button type="button" class="button1" id="getGameButton" onclick="getOptionsInitial()">Get Game</button></div>
-
-   <div id="initialScenario" class="div3"><p class="p1">You have been planning to embark on the journey of a lifetime to create a new home in the West. You've been accumulating supplies and acquired a sturdy wagon and a healthy team of oxen. You are not quite ready to leave, though. You haven't said goodbye to all your friends and family, you haven't fully inspected your wagon, and you haven't closed the sale on your current farm. You need a little more time before you leave. However, you've recently heard that your neighbor's oxen have taken ill. Plus, someone in town just contracted small pox. Reason would dictate you should leave sooner rather than later. Do you...</p></div>
+   <div id="initialScenario" class="div3"><div class="div2"><button type="button" class="button1" id="getGameButton" onclick="getGameInitial()">Get Game</button></div></div>
 
 
    <div class="div3" id="option1"> </div>
    <div class="div3" id="option2"> </div>
    <div class="div3" id="option3"> </div>
-<p id="option4"> </p>
-<p id="option5"> </p>
-
-
-   <div class="div1" id="gameOver"><h1>Game Over</h1></div>
 
 </body>
 </html>

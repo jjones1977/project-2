@@ -29,7 +29,7 @@ function getOptionFromDb(id, callback) {
 function getResultFromDb(id, callback) {
 
    
-    const sql = "SELECT results.result AS result, results.id AS rID, results.resultfinal AS resultfinal FROM results INNER JOIN optionsresults on results.id = optionsresults.resultid WHERE optionsresults.optionid = $1::int";
+    const sql = "SELECT results.result AS result, results.id AS rID, results.resultfinal AS resultfinal, results.resultwin AS resultwin FROM results INNER JOIN optionsresults on results.id = optionsresults.resultid WHERE optionsresults.optionid = $1::int";
 
     const params = [id];
 
